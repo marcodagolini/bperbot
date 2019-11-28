@@ -244,13 +244,13 @@ echoAgent.on('closed', body =>{
 
 
 
-
+/****
 
 setInterval(function() {
     https.get("https://git.heroku.com/bperbot.git");
 }, 300000); // every 5 minutes (300000) every 10 minutes (600000)
 
-
+*****/
 
 
 
