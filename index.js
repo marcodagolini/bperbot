@@ -6,7 +6,7 @@ const Agent = require('node-agent-sdk').Agent;
 
 var echoAgent = new Agent({
 	accountId: '37544564',
-	username: 'waclosure2',
+	username: 'waclosure',
 	appKey: process.env.appKey,
 	secret: process.env.secret,
 	accessToken: process.env.accessToken,
