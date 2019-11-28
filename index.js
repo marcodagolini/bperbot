@@ -4,7 +4,6 @@ const Agent = require('node-agent-sdk').Agent;
 
 
 
-
 var echoAgent = new Agent({
 	accountId: '37544564',
 	username: 'waclosure2',
