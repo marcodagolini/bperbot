@@ -252,13 +252,14 @@ setInterval(()=>{
 }, 10000);
 
 
-/****
-
-setInterval(function() {
-    https.get("https://git.heroku.com/bperbot.git");
-}, 300000); // every 5 minutes (300000) every 10 minutes (600000)
 
 
-****/
+setInterval(()=>{
+	console.log("***awake***");
+	https.get("https://git.heroku.com/bperbot.git");
+}, 30000); // every 5 minutes (300000) every 10 minutes (600000)
+
+
+
 
 
