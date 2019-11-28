@@ -12,7 +12,7 @@ app.listen(process.env.PORT);
 app.set('port', (process.env.PORT || 5000));
 
 
-/*****
+
 
 var openConvs = {};
 
@@ -264,17 +264,16 @@ setInterval(()=>{
 }, 10000);
 
 
-****/
 
 setInterval(()=>{
 	console.log("***awake***");
-	https.get("https://git.heroku.com/bperbot.git");
+	// https.get("https://git.heroku.com/bperclosurebot.git");
+	https.get("https://bperclosurebot.herokuapp.com/");
 }, 30000); // every 5 minutes (300000) every 10 minutes (600000)
 
 
-setInterval(()=>{
-	console.log("***awake***");
-	// https.get("https://git.heroku.com/bperbot.git");
-}, 3000); // every 5 minutes (300000) every 10 minutes (600000)
+
+
+
 
 
