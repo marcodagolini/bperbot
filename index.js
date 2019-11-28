@@ -249,7 +249,7 @@ setInterval(()=>{
 		console.log(resp)
 	});
 
-}, 30000);
+}, 10000);
 
 
 /****
