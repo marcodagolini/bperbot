@@ -242,7 +242,7 @@ echoAgent.on('closed', body =>{
 });
 
 
-setInterval(function() {
+setInterval(()=>{
 	console.log("***ping***");
 	echoAgent.getClock({}, (e, resp) => {
 		if (e) { console.error(e) }
