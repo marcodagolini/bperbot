@@ -9,7 +9,7 @@ var openConvs = {};
 
 var echoAgent = new Agent({
 	accountId: '37544564',
-	username: 'waclosure',
+	username: 'waclosure2',
 	appKey: process.env.appKey,
 	secret: process.env.secret,
 	accessToken: process.env.accessToken,
