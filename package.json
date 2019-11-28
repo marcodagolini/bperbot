@@ -10,7 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "node-agent-sdk": "^1.1.0"
+    "node-agent-sdk": "^0.3.4"
   },
   "repository": {
     "type": "git",
