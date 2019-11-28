@@ -19,7 +19,6 @@ var echoAgent = new Agent({
 
 
 
-
 echoAgent.on('connected', body =>{
 
 	console.log("");
