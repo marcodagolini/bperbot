@@ -1,6 +1,9 @@
 const Agent = require('node-agent-sdk').Agent;
 
 
+var openConvs = {};
+
+
 
 
 
@@ -12,6 +15,7 @@ var echoAgent = new Agent({
 	accessToken: process.env.accessToken,
 	accessTokenSecret: process.env.secretToken
 });
+
 
 
 
@@ -59,6 +63,13 @@ echoAgent.on('routing.RoutingTaskNotification', body =>{
 			if (c.type === "UPSERT") {
 				console.log("upsert");
 
+				if(!openConvs[c.result.conversationId]){
+					openConvs[c.result.conversationId] = {"consumerID":c.result.consumerId};
+					echoAgent.getUserProfile(openConvs[c.result.conversationId].consumerID, (e, profileResp) => {
+						console.log(JSON.stringify(profileResp));
+					});
+				}
+				console.log(openConvs);
 				
 				c.result.ringsDetails.forEach(r => {
 					if (r.ringState === 'WAITING') {
@@ -121,6 +132,8 @@ echoAgent.on('routing.RoutingTaskNotification', body =>{
 			}
 			if (c.type === "DELETE") {
 				console.log("delete");
+				delete openConvs[c.result.convId];
+				console.log(openConvs);
 			}
 		});
 
@@ -152,6 +165,43 @@ echoAgent.on('cqm.ExConversationChangeNotification', body =>{
 
 
 
+
+	if(!(body.changes.length < 1 || body.changes == undefined)){
+
+		console.log("inside1");
+
+		body.changes.forEach(c => {
+			console.log("inside2");
+
+			if (c.type === "UPSERT") {
+				console.log("upsert");
+
+
+				
+				var myLength = c.result.conversationDetails.participants.length;
+				for (var i = 0; i < myLength; i++){
+					if(c.result.conversationDetails.participants[i].role === "CONSUMER"){
+						var myCustomer = c.result.conversationDetails.participants[i].id;
+					}
+				}
+
+				if(!openConvs[c.result.convId]){
+					openConvs[c.result.convId] = {"consumerID":myCustomer};
+					echoAgent.getUserProfile(openConvs[c.result.convId].consumerID, (e, profileResp) => {
+						console.log(JSON.stringify(profileResp));
+					});
+				}
+				console.log(openConvs);
+				
+			}
+			if (c.type === "DELETE") {
+				console.log("delete");
+				delete openConvs[c.result.convId];
+				console.log(openConvs);
+			}
+		});
+
+	}
 
 
 
@@ -187,11 +237,19 @@ echoAgent.on('closed', body =>{
 	console.log("");
 	console.log("");
 	console.log("*****closed")
-	// console.log(JSON.stringify(body));
-	echoAgent.reconnect();
+	console.log(JSON.stringify(body));
 
 });
 
+
+setInterval(function() {
+	console.log("***ping***");
+	echoAgent.getClock({}, (e, resp) => {
+		if (e) { console.error(e) }
+		console.log(resp)
+	});
+
+}, 30000);
 
 
 /****
