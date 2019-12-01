@@ -237,7 +237,7 @@ echoAgent.on('error', body =>{
 	console.log("");
 	console.log("*****error")
 	console.log(JSON.stringify(body));
-	echoAgent.reconnect();
+
 
 });
 
@@ -251,7 +251,7 @@ echoAgent.on('closed', body =>{
 	console.log("");
 	console.log("*****closed")
 	console.log(JSON.stringify(body));
-	// echoAgent.reconnect();
+
 
 });
 
@@ -259,9 +259,13 @@ echoAgent.on('closed', body =>{
 setInterval(()=>{
 	console.log("***ping***");
 	echoAgent.getClock({}, (e, resp) => {
-		if (e) { console.error(e) }
-		console.log(resp)
-		// echoAgent.reconnect();
+		if (e) {
+			console.error(e);
+			echoAgent.reconnect();
+		} else{
+			console.log(resp)
+		}
+		
 	});
 
 }, 10000);
