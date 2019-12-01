@@ -237,6 +237,7 @@ echoAgent.on('error', body =>{
 	console.log("");
 	console.log("*****error")
 	console.log(JSON.stringify(body));
+	echoAgent.reconnect();
 
 });
 
@@ -250,6 +251,7 @@ echoAgent.on('closed', body =>{
 	console.log("");
 	console.log("*****closed")
 	console.log(JSON.stringify(body));
+	echoAgent.reconnect();
 
 });
 
@@ -259,6 +261,7 @@ setInterval(()=>{
 	echoAgent.getClock({}, (e, resp) => {
 		if (e) { console.error(e) }
 		console.log(resp)
+		echoAgent.reconnect();
 	});
 
 }, 10000);
