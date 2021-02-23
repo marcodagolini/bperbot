@@ -22,7 +22,7 @@ var openConvs = {};
 
 var echoAgent = new Agent({
 	accountId: '37544564',
-	username: 'waclosure',
+	username: 'WaClosure4',
 	appKey: process.env.appKey,
 	secret: process.env.secret,
 	accessToken: process.env.accessToken,
@@ -111,7 +111,7 @@ echoAgent.on('routing.RoutingTaskNotification', body =>{
                             					event: {
                                 					type: 'ContentEvent',
                                 					contentType: 'text/plain',
-									message: "Gentile cliente, ci spiace ma in questo momento non riusciamo a rispondere, ti chiediamo di avere un po' di pazienza perché si stanno verificando dei rallentamenti a causa delle numerose richieste. Riprenderemo il servizio di chat su Whatsapp non appena possibile. Grazie, BPER Banca"
+									message: "Ciao, ci scusiamo ma in questo momento non riusciamo a rispondere al tuo messaggio. Ti invitiamo a contattarci al numero verde 800227788 (dall'estero +390592919622) oppure via Chat avviando una sessione dal sito bper.it, nella sezione 'Parla con noi' o dal tuo internet banking Smart Web. Ti ringraziamo per la comprensione!"
                             					}
                         				});
                         				echoAgent.publishEvent({
